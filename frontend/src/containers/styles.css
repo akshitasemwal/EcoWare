@@ -20,3 +20,11 @@
 .menu{
   margin-bottom: 1rem;
 }
+
+.bt{
+
+}
+
+button::selection{
+  color: brown;
+}

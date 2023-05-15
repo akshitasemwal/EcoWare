@@ -27,20 +27,12 @@ app.get('/products', async(req, res) => {
     const products = await Product.find({}).limit(30)
     .populate("brand").populate("group").populate("subcategory").populate("category");
     // console.log(products);
-
-    let page = Number(req.query.page) || 1;
-    let limit = Number(req.query.limit) || 10;
-    console.log(page);
-    console.log(limit);
-    let skip = (page - 1) * limit;
-    // products = products.skip(skip).limit(limit);
-
     res.send(products);
 });
 
 app.get('/getproductby', async (req, res) => {
   const { subcat } = req.query;
-  console.log(subcat);
+  // console.log(subcat);
 
     let products;
     const subcategory = await Subcategory.findOne({ Sub_Category_name: subcat });
@@ -50,7 +42,7 @@ app.get('/getproductby', async (req, res) => {
 });
 
   app.get("/", (req, res) => {
-    res.send("Hello, world!");
+    res.send("Hello, world! \n Welcome to EcoWare!");
   });
 
 app.listen(3001, function(){

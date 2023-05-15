@@ -2,10 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Card, Image } from 'semantic-ui-react';
 import './styles.css';
+import { PRODS_PER_PAGE } from '../utils/constants';
 
-const ProductComponent = ({products}) => {
+const ProductComponent = ({products, page}) => {
+  const startIndex = (page - 1) * PRODS_PER_PAGE;
+  const selectedProds = products.slice(startIndex, startIndex + PRODS_PER_PAGE);
+  // console.log(selectedProds);
 
-    const renderList = products.map((product) => {
+    const renderList = selectedProds.map((product) => {
       const { _id, product_name, product_id, product_description, brand: {Brand_image}, subcategory: {Sub_Category_name} } = product;
 
       return(
