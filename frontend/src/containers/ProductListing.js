@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductComponent from "./ProductComponent";
 import { setProducts } from "../redux/actions/productActions";
 import { Card } from 'semantic-ui-react';
+import './styles.css';
 
 const ProductListing = () => {
-    const products = useSelector((state) => state);
+    const products = useSelector((state) => state.allProducts.products);
     const dispatch = useDispatch();
 
     const fetchProducts = async () => {
@@ -24,10 +25,8 @@ const ProductListing = () => {
 
     console.log("Products: ", products);
     return (
-        <Card.Group>
-        <h3>
-                <ProductComponent/>
-        </h3>
+        <Card.Group className="sp">
+                <ProductComponent products={products}/>
         </Card.Group>
     )
 };

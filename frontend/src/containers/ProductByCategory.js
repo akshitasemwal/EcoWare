@@ -2,36 +2,40 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import ProductComponent from "./ProductComponent";
-import { setProducts } from "../redux/actions/productActions";
+import { setFilterProducts } from "../redux/actions/productActions";
+import { useParams } from "react-router-dom";
+import { Card } from 'semantic-ui-react';
+import './styles.css';
 
 const ProductFiltering = () => {
-    const products = useSelector((state) => state);
+
+    const productsByCategory = useSelector((state) => state.allProducts.productsByCategory);
+    const {category } = useParams();
+
     const dispatch = useDispatch();
 
     const fetchProducts = async () => {
-        const response = await axios.get("http://localhost:3001/getproductby", {
-        params: {
-          subcat: subcategory
+        const response  = await axios.get("http://localhost:3001/getproductby",{
+            params: {
+                subcat: category
+            }
         })
         .catch((err) => {
             console.log("error", err);
         });
-        console.log(subcategory);
-        console.log(response.data);
-        dispatch(setProducts(response.data));
+        // console.log(category);
+        // console.log(response.data);
+        dispatch(setFilterProducts(response.data));
     };
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [category]);
 
-    console.log("Products: ", products);
     return (
-        <div className="ui container">
-            <h1>
-                <ProductComponent/>
-            </h1>
-        </div>
+        <Card.Group className="sp">
+                <ProductComponent products={productsByCategory}/>
+        </Card.Group>
     )
 };
 

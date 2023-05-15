@@ -19,26 +19,23 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   console.log("connection successful!")
 });
 
-// console.log(Product.find().select('product_name product_id'));
 console.log("Hello");
 
 app.get('/products', async(req, res) => {
     console.log("hello");
 
-    const products = await Product.find({}).limit(3)
+    const products = await Product.find({}).limit(30)
     .populate("brand").populate("group").populate("subcategory").populate("category");
-       console.log(products);
+    // console.log(products);
 
     let page = Number(req.query.page) || 1;
-    let limit = Number(req.query.limit) || 3;
+    let limit = Number(req.query.limit) || 10;
     console.log(page);
     console.log(limit);
-
     let skip = (page - 1) * limit;
-    products = products.skip(skip).limit(limit);
+    // products = products.skip(skip).limit(limit);
 
     res.send(products);
-
 });
 
 app.get('/getproductby', async (req, res) => {
@@ -48,7 +45,7 @@ app.get('/getproductby', async (req, res) => {
     let products;
     const subcategory = await Subcategory.findOne({ Sub_Category_name: subcat });
     products = await Product.find({ subcategory: subcategory._id }).populate("brand").populate("group").populate("subcategory").populate("category");
-    console.log(products);
+    // console.log(products);
     res.send(products);
 });
 

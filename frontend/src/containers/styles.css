@@ -1,0 +1,22 @@
+.outer{
+  padding: 1rem;
+  align-items: center;
+}
+
+.size{
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+
+.sp{
+  padding-top: 6rem;
+  padding-left: 3rem;
+}
+
+.head{
+  padding: 0.75rem;
+}
+
+.menu{
+  margin-bottom: 1rem;
+}
