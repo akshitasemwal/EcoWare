@@ -39,12 +39,14 @@ const ProductListing = () => {
 
     // console.log("Products: ", products);
     return (
+      <div>
+      { loading ? <h1>Loading...</h1> : <>
         <Card.Group className="sp">
-                { loading ? <h1>Loading...</h1> : <>
                   <ProductComponent products = {products} page = {page}/>
-                  <Pagination totalPages = {totalPages} handleClick={handleClick} />
-                </> }
         </Card.Group>
+        <Pagination totalPages = {totalPages} handleClick = {handleClick} />
+      </> }
+      </div>
     )
 };
 

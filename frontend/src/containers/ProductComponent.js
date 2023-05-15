@@ -15,7 +15,7 @@ const ProductComponent = ({products, page}) => {
       return(
         <div className="four wide column ui" key={_id}>
           <div className="ui stackable cards outer">
-            <div className="card">
+            <div className="card ">
               <div className="image">
                 <img src={Brand_image} alt={product_name} />
               </div>
